@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+  mysql:
+    restart: always
+    image: mysql:5.7.22
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ShortUrl
+      MYSQL_ROOT_PASSWORD: Ty@@Ti__a@ii!
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+      --max_allowed_packet=128M
+      --sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO"
+    volumes:
+      - /usr/local/docker/mysql:/var/lib/mysql
+
+  redirect_service:
+    build: .
+    volumes:
+      - ./RedirectService:/code
+    ports:
+      - "8000:80"
+    env_file:
+      - ./.env
+    container_name: redirect_service
+    depends_on:
+      - "mysql"
+      - "redis"
+
+  console_service:
+    build: .
+    volumes:
+      - ./ConsoleService:/code
+    ports:
+      - "9988:80"
+    env_file:
+      - ./.env
+    container_name: console_service
+    depends_on:
+      - "mysql"
+      - "redis"
+
+  redis:
+    container_name: redis
+    image: redis:5.0.9
+    command: redis-server --requirepass Ty@@Ti__a@ii!
+    ports:
+      - 6379:6379
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.19.6
+    volumes:
+      - ./nginx_conf/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:2356"
+    depends_on:
+      - console_service
+      - redirect_service

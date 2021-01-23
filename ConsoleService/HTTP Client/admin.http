@@ -1,0 +1,19 @@
+GET http://localhost:80/api/item?id=99
+Accept: application/json
+
+###
+POST http://localhost:8000/Vod9SgPGuL/admin/login
+Content-Type: application/json
+
+{
+  "account":{{account}},
+  "password": {{password}}
+}
+
+###
+
+
+token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ0eXBlIjoiYWRtaW4iLCJleHAiOjE2MTE4MDgyMjZ9.heC9BF2bSz2-JMMHDgBIQP0RXnwgARnrHLj1ckLhWfQ'
+
+POST http://localhost:8000/Vod9SgPGuL/admin/newUser
+Content-Type: application/json
