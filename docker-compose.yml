@@ -29,9 +29,12 @@ services:
     env_file:
       - ./.env
     container_name: redirect_service
+    links:
+    	- redis
+    	- mysql
     depends_on:
-      - "mysql"
-      - "redis"
+      - mysql
+      - redis
 
   console_service:
     build: .
@@ -42,9 +45,12 @@ services:
     env_file:
       - ./.env
     container_name: console_service
+    links:
+     	 - redis
+    	 - mysql
     depends_on:
-      - "mysql"
-      - "redis"
+      - mysql
+      - redis
 
   redis:
     container_name: redis
@@ -60,6 +66,6 @@ services:
       - ./nginx_conf/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "80:2356"
-    depends_on:
-      - console_service
-      - redirect_service
+    links:
+    	- redirect_service
+    	- console_service
