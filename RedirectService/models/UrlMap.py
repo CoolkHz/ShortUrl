@@ -7,7 +7,7 @@ from utils.tools.fields import LocalDatetimeField
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-class UrlDict(BaseModelMixin):
+class UrlMap(BaseModelMixin):
     """
     短链接-原链接
     """
