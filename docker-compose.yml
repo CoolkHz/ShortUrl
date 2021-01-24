@@ -20,6 +20,13 @@ services:
     volumes:
       - /usr/local/docker/mysql:/var/lib/mysql
 
+  redis:
+    container_name: redis
+    image: redis:5.0.9
+    command: redis-server --requirepass Ty@@Ti__a@ii!
+    ports:
+      - 6379:6379
+
   redirect_service:
     build: .
     volumes:
@@ -30,8 +37,8 @@ services:
       - ./.env
     container_name: redirect_service
     links:
-    	- redis
     	- mysql
+    	- redis
 
   console_service:
     build: .
@@ -43,15 +50,8 @@ services:
       - ./.env
     container_name: console_service
     links:
-     	 - redis
-    	 - mysql
-    
-  redis:
-    container_name: redis
-    image: redis:5.0.9
-    command: redis-server --requirepass Ty@@Ti__a@ii!
-    ports:
-      - 6379:6379
+    	- mysql
+    	- redis
 
   nginx:
     container_name: nginx
