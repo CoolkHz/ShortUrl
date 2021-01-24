@@ -59,7 +59,7 @@ services:
     volumes:
       - ./nginx_conf/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "80:2356"
+      - "80:80"
     links:
       - redirect_service
       - console_service
