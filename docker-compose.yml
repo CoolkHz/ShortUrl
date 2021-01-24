@@ -37,7 +37,7 @@ services:
       - ./.env
     container_name: redirect_service
     links:
-    	- mysql
+      - mysql
     	- redis
 
   console_service:
