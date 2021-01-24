@@ -38,7 +38,7 @@ services:
     container_name: redirect_service
     links:
       - mysql
-    	- redis
+      - redis
 
   console_service:
     build: .
@@ -50,8 +50,8 @@ services:
       - ./.env
     container_name: console_service
     links:
-    	- mysql
-    	- redis
+      - mysql
+      - redis
 
   nginx:
     container_name: nginx
