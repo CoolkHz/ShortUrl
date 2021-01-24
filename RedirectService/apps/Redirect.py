@@ -2,17 +2,17 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import RedirectResponse
 
 # from tortoise import Tortoise
-from models.UrlMap import UrlDict
+from models.UrlMap import UrlMap
 from utils.base62 import base62_decode
 
 url_router = APIRouter()
 
 
-async def check_url(id: int) -> UrlDict:
+async def check_url(id: int) -> UrlMap:
     """
     查询记录是否存在
     """
-    result = await UrlDict.get_or_none(id=id, deleted=False)
+    result = await UrlMap.get_or_none(id=id, deleted=False)
     if not result:
         raise HTTPException(404, '记录不存在')
     return result
