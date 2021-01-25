@@ -15,7 +15,7 @@ class UrlMap(BaseModelMixin):
     title = fields.CharField(max_length=128, description='标题')
     token = fields.CharField(max_length=32, unique=True, null=True, description='token')
     # short_url = fields.CharField(max_length=64, unique=True, null=True, description='短链接')
-    origin_url = fields.CharField(max_length=256, description='原链接')
+    origin_url = fields.CharField(max_length=2055, description='原链接')
 
     enabled = fields.BooleanField(default=True, description="启用")
     status = fields.IntField(description='状态')
@@ -34,7 +34,7 @@ class ExpiredUrlMap(BaseModelMixin):
     title = fields.CharField(max_length=128, description='标题')
     token = fields.CharField(max_length=32, unique=True, null=True, description='token')
     # short_url = fields.CharField(max_length=32, unique=True, null=True, description='短链接')
-    origin_url = fields.CharField(max_length=256, description='原链接')
+    origin_url = fields.CharField(max_length=2055, description='原链接')
     created_time = LocalDatetimeField(null=True, description='创建时间')
 
 
@@ -53,5 +53,5 @@ class UrlMapUpdateRecord(BaseModelMixin):
     user_id = fields.IntField(description='用户id')
     urlmap_id = fields.IntField(description='用户id')
     title = fields.CharField(null=True, max_length=128, description='标题')
-    origin_url = fields.CharField(null=True, max_length=255, description='更改前原链接')
+    origin_url = fields.CharField(null=True, max_length=2055, description='更改前原链接')
     updated_time = LocalDatetimeField(null=True, description='更新时间')
