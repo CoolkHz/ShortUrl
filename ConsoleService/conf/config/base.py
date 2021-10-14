@@ -21,7 +21,7 @@ ALLOWED_HEADERS: List[str] = ['*']
 DOMAIN = 'https://tcpan.cn/'
 
 # 数据库链接配置
-DATABASE_URL: str = os.environ.get('DATABASE_URL') or 'mysql://root:Ty@@Ti__a@ii!@94.74.99.230:3306/ShortUrl'
+DATABASE_URL: str = os.environ.get('DATABASE_URL') or 'mysql://root:xxxxxx/ShortUrl'
 
 # 数据库使用那些model配置
 MODELS: Dict[str, List[str]] = {'models': ['models.admin', ], 'user': ['models.User', ], 'urlmap': ['models.UrlMap', ]}
