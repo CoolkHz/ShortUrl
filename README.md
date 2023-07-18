@@ -1,6 +1,6 @@
 ## 项目说明
 
- FastApi Restful Api 项目示例
+ FastApi实现的短网址服务
 
 
 ## 关键特性:
